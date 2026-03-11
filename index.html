@@ -3,85 +3,794 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Melissa Gao | Home</title>
+  <title>Emma Carter | Portfolio</title>
   <meta
     name="description"
-    content="Personal portfolio website for Melissa Gao featuring a short introduction, projects, and links to resume and blog pages."
+    content="Personal portfolio homepage for a William & Mary student-athlete studying Business Analytics and Data Science."
   />
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --surface: #ffffff;
+      --surface-muted: #f1f4f0;
+      --text: #1d241f;
+      --text-soft: #59645d;
+      --line: #d9dfd8;
+      --accent: #115740;
+      --accent-soft: #e7f0ec;
+      --shadow: 0 10px 30px rgba(17, 87, 64, 0.08);
+      --radius: 20px;
+      --radius-sm: 14px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(to bottom, #f8f8f5 0%, #f5f7f4 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 5.5rem 0;
+    }
+
+    .section-header {
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0 0 0.75rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 750;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 720;
+    }
+
+    h3 {
+      font-size: 1.18rem;
+      font-weight: 650;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      color: var(--text-soft);
+      font-size: 1rem;
+    }
+
+    .muted {
+      color: var(--text-soft);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 247, 244, 0.82);
+      border-bottom: 1px solid rgba(217, 223, 216, 0.7);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      font-weight: 550;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 4.5rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.45rem 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 650;
+      box-shadow: 0 8px 20px rgba(17, 87, 64, 0.04);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: var(--text);
+      font-weight: 560;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-text {
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.9rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 650;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button:hover,
+    .button:focus {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 10px 24px rgba(17, 87, 64, 0.16);
+    }
+
+    .button-primary:hover,
+    .button-primary:focus {
+      box-shadow: 0 14px 28px rgba(17, 87, 64, 0.22);
+    }
+
+    .button-secondary {
+      background: var(--surface);
+      border-color: var(--line);
+      color: var(--text);
+      box-shadow: var(--shadow);
+    }
+
+    .button-secondary:hover,
+    .button-secondary:focus {
+      border-color: #bcc7bf;
+      background: #fcfcfb;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,245,0.96) 100%);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 1.15rem;
+      box-shadow: var(--shadow);
+    }
+
+    .portrait {
+      border-radius: 22px;
+      min-height: 430px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(17, 87, 64, 0.14), transparent 35%),
+        linear-gradient(135deg, #eef3ef 0%, #dfe8e1 100%);
+      border: 1px solid rgba(17, 87, 64, 0.08);
+    }
+
+    .portrait::before {
+      content: "Headshot Placeholder";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(29, 36, 31, 0.42);
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .portrait-badge {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      gap: 0.55rem;
+      align-items: center;
+      padding: 0.65rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(217, 223, 216, 0.95);
+      box-shadow: 0 8px 24px rgba(17, 87, 64, 0.08);
+      font-size: 0.9rem;
+      color: var(--text);
+      backdrop-filter: blur(8px);
+    }
+
+    .portrait-badge span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(17, 87, 64, 0.1);
+      border-color: #c9d3cb;
+    }
+
+    .stat-card {
+      padding: 1rem 1.1rem;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #fafcfb 100%);
+    }
+
+    .stat-title {
+      font-size: 0.83rem;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-value {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    .badge-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.72rem 0.95rem;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 550;
+      box-shadow: 0 6px 18px rgba(17, 87, 64, 0.05);
+    }
+
+    .badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.85;
+      flex: 0 0 auto;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    .list {
+      padding: 0;
+      margin: 1rem 0 0;
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .list li {
+      padding: 0.8rem 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfcfb;
+      color: var(--text-soft);
+    }
+
+    .list strong {
+      color: var(--text);
+    }
+
+    .experience-card .meta,
+    .goal-card .meta {
+      display: inline-block;
+      margin-bottom: 0.7rem;
+      font-size: 0.85rem;
+      font-weight: 650;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.4rem 0.72rem;
+      border-radius: 999px;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 0.55rem;
+      color: var(--accent);
+      font-size: 0.93rem;
+      font-weight: 650;
+      transition: opacity 0.2s ease;
+    }
+
+    .card-link:hover,
+    .card-link:focus {
+      opacity: 0.78;
+    }
+
+    .contact-card {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+    }
+
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .contact-pill:hover,
+    .contact-pill:focus {
+      transform: translateY(-1px);
+      border-color: #bcc7bf;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      border-top: 1px solid rgba(217, 223, 216, 0.8);
+      margin-top: 1rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .split,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      .portrait {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0.9rem 0;
+      }
+
+      .nav-links {
+        gap: 0.95rem 1rem;
+      }
+
+      .section {
+        padding: 4.25rem 0;
+      }
+
+      .hero-actions,
+      .contact-links {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button,
+      .contact-pill {
+        width: 100%;
+      }
+
+      .hero-card {
+        padding: 0.9rem;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <div class="header-content">
-        <h1 class="site-title">Melissa Gao</h1>
-        <nav class="site-nav" aria-label="Main navigation">
-          <ul>
-            <li><a href="index.html" aria-current="page">Home</a></li>
-            <li><a href="resume.html">Resume</a></li>
-            <li><a href="blog.html">Blog</a></li>
-          </ul>
-        </nav>
-      </div>
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="Homepage">
+        <div class="brand-mark">EC</div>
+        <span>Emma Carter</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#academics">Academics</a>
+        <a href="#athletics">Athletics</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container">
-        <h2>Welcome</h2>
-        <p>
-          Hi, I’m Melissa Gao. I’m building this portfolio as a space to share my
-          academic background, professional interests, and creative work. I’m
-          especially interested in technology, communication, and projects that
-          combine thoughtful design with practical problem-solving.
-        </p>
-        <p>
-          This site includes a resume page, a blog, and highlights of a few
-          areas I care about most. The content here is intentionally simple and
-          easy to update, so I can continue improving it over time.
-        </p>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker">William &amp; Mary Student-Athlete</div>
+          <h1>Emma Carter</h1>
+          <p class="hero-subtitle">
+            Business Analytics student, Data Science minor, and collegiate gymnast focused on performance, leadership, and disciplined growth.
+          </p>
+          <p class="hero-text">
+            I’m a sophomore at William &amp; Mary pursuing a major in Business Analytics and a minor in Data Science while competing on the women’s gymnastics team. My goal is to complete my undergraduate degree in three years and continue into the MSBA program in year four, building a path that blends academic rigor, athletic discipline, and data-driven problem solving.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#experience">View Experience</a>
+            <a class="button button-secondary" href="#contact">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="portrait" role="img" aria-label="Headshot placeholder for Emma Carter">
+            <div class="portrait-badge">
+              <span></span>
+              Sophomore • Gymnast • Analytics
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="highlights">
+    <section id="about" class="section">
       <div class="container">
-        <h2>Projects &amp; Interests</h2>
-        <div class="card-grid">
-          <article class="card">
-            <h3>Web Development</h3>
+        <div class="section-header">
+          <div class="eyebrow">About</div>
+          <h2>Grounded by discipline, driven by curiosity.</h2>
+          <p>
+            I’m passionate about the intersection of performance, data, and leadership. As a student-athlete, I’ve learned how to balance elite-level commitment with rigorous academics, and I bring that same consistency, composure, and work ethic into every classroom, team setting, and project I take on.
+          </p>
+        </div>
+
+        <div class="badge-wrap">
+          <div class="badge">William &amp; Mary Student-Athlete</div>
+          <div class="badge">Business Analytics Major</div>
+          <div class="badge">Data Science Minor</div>
+          <div class="badge">Women’s Gymnastics</div>
+          <div class="badge">3-Year Undergraduate Plan</div>
+          <div class="badge">MSBA Track</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="academics" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">Academics</div>
+          <h2>Building a foundation in analytics, strategy, and decision-making.</h2>
+          <p>
+            My academic focus is centered on understanding how data can improve performance, inform strategy, and support strong decisions. I’m especially interested in the way analytics can be applied across business, athletics, and leadership environments to create measurable impact.
+          </p>
+        </div>
+
+        <div class="split">
+          <div class="card">
+            <h3>Academic Focus</h3>
             <p>
-              Placeholder text: describe a website, class project, or coding
-              experience here. You can replace this with tools you used, what
-              you built, and what you learned.
+              I’m majoring in <strong>Business Analytics</strong> and minoring in <strong>Data Science</strong>, with an accelerated academic plan designed to position me for advanced study through William &amp; Mary’s MSBA program. Long term, I hope to combine technical fluency with strategic thinking to solve complex problems in high-performance environments.
             </p>
+
+            <ul class="list">
+              <li><strong>Major:</strong> Business Analytics</li>
+              <li><strong>Minor:</strong> Data Science</li>
+              <li><strong>Academic Path:</strong> Accelerated 3-year undergraduate plan</li>
+              <li><strong>Interest Areas:</strong> Business strategy, analytics, data-driven decision-making, performance insights</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Relevant Skills &amp; Coursework</h3>
+            <ul class="list">
+              <li><strong>Coursework Placeholder:</strong> Statistics for Business</li>
+              <li><strong>Coursework Placeholder:</strong> Data Visualization</li>
+              <li><strong>Coursework Placeholder:</strong> Predictive Analytics</li>
+              <li><strong>Coursework Placeholder:</strong> Business Modeling</li>
+              <li><strong>Skill Placeholder:</strong> Excel, SQL, Python, Tableau</li>
+              <li><strong>Skill Placeholder:</strong> Presentation, teamwork, structured problem solving</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="athletics" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">Athletics</div>
+          <h2>Competing with resilience, consistency, and trust in the process.</h2>
+          <p>
+            Being a collegiate gymnast has shaped how I approach pressure, preparation, and long-term growth. Gymnastics has taught me resilience, consistency, teamwork, time management, and mental toughness—qualities that influence how I lead, how I learn, and how I show up for others.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card stat-card">
+            <div class="stat-title">Team</div>
+            <div class="stat-value">William &amp; Mary Women’s Gymnastics</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-title">Focus</div>
+            <div class="stat-value">Training discipline, execution, and continuous improvement</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-title">Athletic Strengths</div>
+            <div class="stat-value">Consistency, composure, accountability, and mental toughness</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-title">Highlight Placeholder</div>
+            <div class="stat-value">Team contributor in collegiate competition environment</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-title">Leadership Placeholder</div>
+            <div class="stat-value">Supporting team culture through preparation and example</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-title">Performance Mindset</div>
+            <div class="stat-value">Balancing recovery, academics, training, and competition demands</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">Experience &amp; Leadership</div>
+          <h2>Early experiences shaped by initiative, teamwork, and analytical thinking.</h2>
+          <p>
+            I’m interested in opportunities where I can contribute as both a thoughtful teammate and a disciplined problem solver. The experiences below reflect the kinds of roles and projects that best represent where I’m headed.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card experience-card">
+            <div class="meta">Leadership</div>
+            <h3>Student-Athlete Leadership Representative</h3>
+            <p>
+              Contributed to conversations around team culture, communication, and accountability while helping represent the perspective of student-athletes balancing demanding academic and athletic schedules.
+            </p>
+            <a href="#" class="card-link">Link Placeholder →</a>
           </article>
 
-          <article class="card">
-            <h3>Research &amp; Analysis</h3>
+          <article class="card experience-card">
+            <div class="meta">Analytics Project</div>
+            <h3>Performance Analytics Academic Project</h3>
             <p>
-              Placeholder text: highlight research experience, analytical work,
-              or a topic you enjoy studying. You can mention coursework,
-              presentations, or a favorite subject area.
+              Built a placeholder project analyzing performance and training trends using structured data, with a focus on identifying patterns, communicating insights clearly, and supporting stronger decision-making.
             </p>
+            <a href="#" class="card-link">Project Placeholder →</a>
           </article>
 
-          <article class="card">
-            <h3>Leadership &amp; Community</h3>
+          <article class="card experience-card">
+            <div class="meta">Professional Experience</div>
+            <h3>Business Internship Placeholder</h3>
             <p>
-              Placeholder text: share involvement in clubs, mentoring,
-              volunteering, or leadership roles. This section works well for
-              activities that show initiative and collaboration.
+              Supported a business team through research, presentation preparation, and data organization, gaining early exposure to professional communication, operational thinking, and real-world analytical work.
             </p>
+            <a href="#" class="card-link">Experience Placeholder →</a>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="goals" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">Future Goals</div>
+          <h2>An accelerated path built around growth, impact, and long-term purpose.</h2>
+        </div>
+
+        <div class="card goal-card">
+          <div class="meta">Looking Ahead</div>
+          <p>
+            My plan is to complete my undergraduate studies in three years and earn an MSBA in year four, creating a strong bridge between academic preparation and professional opportunity. I want to build a career that combines analytics, leadership, and high-performance thinking—whether that means working in business strategy, performance analysis, consulting, or another data-driven field where discipline and insight matter.
+          </p>
+          <p>
+            What excites me most is the chance to carry lessons from athletics into the next stage of my career: showing up consistently, learning quickly, leading with humility, and using data to make better decisions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="card contact-card">
+          <div class="eyebrow" style="justify-content:center;">Contact</div>
+          <h2>Let’s connect.</h2>
+          <p>
+            I’m always open to connecting with mentors, alumni, recruiters, and professionals interested in analytics, leadership, and student-athlete development.
+          </p>
+
+          <div class="contact-links">
+            <a class="contact-pill" href="mailto:emma.carter@email.com">emma.carter@email.com</a>
+            <a class="contact-pill" href="#" target="_blank" rel="noopener">LinkedIn Placeholder</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Melissa Gao. All rights reserved.</p>
+  <footer>
+    <div class="container footer-inner">
+      <div>&copy; 2026 Emma Carter. All rights reserved.</div>
+      <div>Designed with discipline, clarity, and purpose.</div>
     </div>
   </footer>
 </body>
